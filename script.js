@@ -12,12 +12,21 @@ function createGrid(size) {
         square.style.height = `${squareSize}px`
 
         container.appendChild(square)
-        square.addEventListener(`mouseover`, () => {
-            const randomRed = Math.floor(Math.random() * 256);
-            const randomGreen = Math.floor(Math.random() * 256);
-            const randomBlue = Math.floor(Math.random() * 256);
-            square.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`       
-        })
+        square.addEventListener(`mouseenter`, () => {
+    let currentOpacity = parseFloat(square.style.opacity) || 0;
+    currentOpacity = Math.min(currentOpacity + 0.1, 1);
+
+    square.dataset.opacity = currentOpacity;
+
+    if (currentOpacity === 0.1) {
+        const randomRed = Math.floor(Math.random() * 256);
+        const randomGreen = Math.floor(Math.random() * 256);
+        const randomBlue = Math.floor(Math.random() * 256);
+        square.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+    }
+
+    square.style.opacity = currentOpacity;
+});
     }
 }
 createGrid(16);
@@ -38,4 +47,5 @@ resetBtn.addEventListener(`click`, () => {
         alert(`Invalid size! Please enter a number between 1 and 100.`)
     }
 })  
+
 
