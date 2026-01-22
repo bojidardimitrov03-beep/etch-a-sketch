@@ -19,3 +19,9 @@ button{
     font-size: 16px;
     cursor: pointer;
 }
+
+.grid-square{
+    box-sizing: border-box; 
+    background-color: white;
+    border: 1px solid black;
+}
